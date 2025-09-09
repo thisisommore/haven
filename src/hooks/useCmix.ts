@@ -194,20 +194,30 @@ const useCmix = () => {
     }
   }, [cmix, createDatabaseCipher, decryptedPass]);
 
+  const [cmixInitiating, setCmixInitiating] = useState(false);
+  const [cmixLoading, setCmixLoading] = useState(false);
   // Cmix initialization and loading
   const initializeCmix = async (password: Uint8Array) => {
-    if (!cmixPreviouslyInitialized) {
+    if (!cmixPreviouslyInitialized && !cmixInitiating) {
+      console.log(' await utils.NewCmix(ndf, STATE_PATH, password, );');
+      setCmixInitiating(true);
       await utils.NewCmix(ndf, STATE_PATH, password, '');
     }
   };
   const loadCmix = async (password: Uint8Array) => {
-    const loadedCmix = await utils.LoadCmix(STATE_PATH, password, encodedCmixParams);
-    setCmix(loadedCmix);
+    if (!cmixLoading) {
+      console.log('await utils.LoadCmix(STATE_PATH, password, encodedCmixParams);');
+      setCmixLoading(true);
+      const loadedCmix = await utils.LoadCmix(STATE_PATH, password, encodedCmixParams);
+      setCmix(loadedCmix);
+    }
   };
   useEffect(() => {
     if (decryptedPass) {
       initializeCmix(decryptedPass).then(() => {
-        loadCmix(decryptedPass);
+        setTimeout(() => {
+          loadCmix(decryptedPass);
+        }, 2000);
       });
     }
   }, [decryptedPass]);
