@@ -15,11 +15,11 @@ git clone https://github.com/thisisommore/haven.git     haven
 git clone https://github.com/thisisommore/xxnetwork-secure-extension.git extension
 
 # 2. checkout branches
-cd client    && git checkout 11-22-implement-kv-interface-defined-in-collectiveversionedkvgo && cd ..
-cd ekv       && git checkout 11-22-implement-kv-interface-defined-in-collectiveversionedkvgo && cd ..
-cd xxdk-wasm && git checkout 11-22-implement-kv-interface-defined-in-collectiveversionedkvgo && cd ..
-cd haven     && git checkout fix-stuck                                               && cd ..
-cd extension && git checkout use-service-worker                                     && cd ..
+cd client    && git checkout 11-22-implement-kv-interface-defined-in-collectiveversionedkvgo  && cd ..
+cd ekv       && git checkout 11-22-implement-kv-interface-defined-in-collectiveversionedkvgo  && cd ..
+cd xxdk-wasm && git checkout 11-22-implement-kv-interface-defined-in-collectiveversionedkvgo  && cd ..
+cd haven     && git checkout 5-add-window-object-and-extension-detection-gitpod               && cd ..
+cd extension && git checkout 11-lock-extension-by-default-and-dont-allow-any-api-while-locked && cd ..
 
 # 3. build extension
 cd extension
@@ -60,8 +60,8 @@ bun link xxdk-wasm
 cat <<EOF
 
 👉  Please open:
-    haven/src/components/common/WebAssemblyRunner/haven-storage.ts
-  update the constant EXT_ID (around line 57) to your extension’s ID.
+    haven/src/components/common/WebAssemblyRunner/haven-storage-extension.ts
+  update the constant EXT_ID (around line 50) to your extension's ID.
 
 Then run:
   npm run dev
